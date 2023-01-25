@@ -25,6 +25,20 @@ app.route('/tasks')
         }
     })
 
+app.route('/tasks/:id')
+    .get(async (req, res) => {
+        try {
+            const {id} = req.params
+            const task = await Todo.getTask(id);
+            res.status(200)
+            res.json(task)
+        }
+        catch(error) {
+            res.status(404)
+            res.json({message: error})
+        }
+    })
+
 app.listen(PORT, () => {
     console.log(`Serving on port ${PORT}`)
 })
