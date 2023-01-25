@@ -52,6 +52,11 @@ app.route('/tasks/:id')
     res.json(updatedTask);
   });
 
+app.all('*',(req,res) => {
+  res.status(400);
+  res.json({message: 'Bad Request'});
+});
+
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
 });
