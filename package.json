@@ -18,5 +18,8 @@
   "homepage": "https://github.com/xentro-sam/todo-routes-express#readme",
   "devDependencies": {
     "eslint": "^8.32.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
