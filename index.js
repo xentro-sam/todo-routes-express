@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const Todo = require('./controllers');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const PORT = 3000;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.route('/tasks')
   .get(async (req, res) => {
