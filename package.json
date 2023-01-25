@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/xentro-sam/todo-routes-express/issues"
   },
-  "homepage": "https://github.com/xentro-sam/todo-routes-express#readme"
+  "homepage": "https://github.com/xentro-sam/todo-routes-express#readme",
+  "devDependencies": {
+    "eslint": "^8.32.0"
+  }
 }
