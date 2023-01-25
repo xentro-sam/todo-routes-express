@@ -39,10 +39,16 @@ app.route('/tasks/:id')
     }
   })
   .patch(async (req, res) => {
-    const {id} = req.params;
-    const task = await Todo.completeTask(id);
-    res.status(200);
-    res.json(task);
+    try {
+      const {id} = req.params;
+      const task = await Todo.completeTask(id);
+      res.status(200);
+      res.json(task);
+    }
+    catch(error) {
+      res.status(404);
+      res.json({message: error});
+    }
   })
   .put(async (req, res) => {
     try {
