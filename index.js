@@ -62,6 +62,18 @@ app.route('/tasks/:id')
       res.status(404);
       res.json({message: error});
     }
+  })
+  .delete(async (req, res) => {
+    try {
+      const {id} = req.params;
+      let status = await Todo.deleteTask(id);
+      res.status(200);
+      res.json({message: status});
+    }
+    catch(error) {
+      res.status(404);
+      res.json({message: error});
+    }
   });
 
 app.all('*',(req,res) => {
