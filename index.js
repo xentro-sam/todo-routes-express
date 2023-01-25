@@ -45,11 +45,17 @@ app.route('/tasks/:id')
     res.json(task);
   })
   .put(async (req, res) => {
-    let taskData = req.body;
-    const {id} = req.params;
-    let updatedTask = await Todo.updateTask(id, taskData);
-    res.status(200);
-    res.json(updatedTask);
+    try {
+      let taskData = req.body;
+      const {id} = req.params;
+      let updatedTask = await Todo.updateTask(id, taskData);
+      res.status(200);
+      res.json(updatedTask);
+    }
+    catch(error) {
+      res.status(404);
+      res.json({message: error});
+    }
   });
 
 app.all('*',(req,res) => {
