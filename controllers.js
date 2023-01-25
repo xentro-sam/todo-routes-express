@@ -1,23 +1,13 @@
 let taskList = require('./data');
 
-function getIndexFromId(id) {
-  let index = -1;
-  for(let idx = 0; idx < taskList.length && index === -1; idx++) {
-    if(taskList[idx].id === parseInt(id)) {
-      index = idx;
-    }
-  }
-  return index;
-}
-
 class Controller {
-  static getTasks() {
+  static getTasks = () => {
     return new Promise((resolve) => resolve(taskList));
   }
     
-  static getTask(id) {
+  static getTask = (id) => {
     return new Promise((resolve, reject) => {
-      let task = taskList.find((todo) => todo.id === parseInt(id));
+      const task = taskList.find((todo) => todo.id === parseInt(id));
       if(task) {
         resolve(task);
       }
@@ -25,22 +15,22 @@ class Controller {
     });
   }
 
-  static createTask(task) {
-    let newId = Math.floor(2 + Math.random() * 10);
+  static createTask = (task) => {
+    const newId = Math.floor(2 + Math.random() * 10);
     return new Promise((resolve) => {
       let newTask = {
+        ...task,
         id: newId,
-        isComplete: false,
-        ...task
+        isComplete: false
       };
       taskList.push(newTask);
       resolve(newTask);
     });
   }
 
-  static deleteTask(id) {
+  static deleteTask = (id) => {
     return new Promise((resolve, reject) => {
-      let index = getIndexFromId(id);
+      const index = taskList.findIndex((task) => task.id === parseInt(id))
       if(index === -1) {
         reject(`Task with id ${id} was not found`);
       }
@@ -49,9 +39,9 @@ class Controller {
     });
   }
 
-  static completeTask(id) {
+  static completeTask = (id) => {
     return new Promise((resolve, reject) => {
-      let index = getIndexFromId(id);
+      const index = taskList.findIndex((task) => task.id === parseInt(id))
       if(index === -1) {
         reject(`Task with id ${id} was not found`);
       }
@@ -60,9 +50,9 @@ class Controller {
     });
   }
   
-  static updateTask(id, data) {
+  static updateTask = (id, data) => {
     return new Promise((resolve, reject) => {
-      let index = getIndexFromId(id);
+      const index = taskList.findIndex((task) => task.id === parseInt(id))
       if(index === -1) {
         reject(`Task with id ${id} was not found`);
       }

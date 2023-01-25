@@ -13,9 +13,9 @@ app.route('/tasks')
     res.json(tasks);
   })
   .post(async (req, res) => {
-    let taskData = req.body;
+    const taskData = req.body;
     try {
-      let task = await Todo.createTask(taskData);
+      const task = await Todo.createTask(taskData);
       res.status(201);
       res.json(task);
     }
@@ -52,9 +52,9 @@ app.route('/tasks/:id')
   })
   .put(async (req, res) => {
     try {
-      let taskData = req.body;
+      const taskData = req.body;
       const {id} = req.params;
-      let updatedTask = await Todo.updateTask(id, taskData);
+      const updatedTask = await Todo.updateTask(id, taskData);
       res.status(200);
       res.json(updatedTask);
     }
